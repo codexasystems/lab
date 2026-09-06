@@ -211,7 +211,7 @@ config:
             widget:
               type: iframe
               name: PIDNS2 Network
-              src: "http://192.168.1.10:4000/d-solo/ad2xjfd/pidns-temp?orgId=1&from=now-2h&to=now&panelId=panel-5&refresh=10s&hideLogo=true"
+              src: "http://192.168.1.10:4000/d-solo/ad2xjfd/pidns-temp?orgId=1&from=now-2h&to=now&panelId=panel-9&refresh=10s&hideLogo=true"
               classes: h-52
               referrerPolicy: same-origin
               allowFullscreen: false
