@@ -1,0 +1,29 @@
+# immich-library-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-library-pv
+spec:
+  capacity:
+    storage: 500Gi   # nominal — NFS doesn't actually enforce this, just needs to be present
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.2
+    path: "/volume1/Home Media/photos"
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-library-pvc
+  namespace: immich
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: immich-library-pv
+  storageClassName: ""

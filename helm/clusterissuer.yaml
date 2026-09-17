@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-dns
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: codexasystems@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-dns-key   # cert-manager creates/manages this itself, not something you provide
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token   # must match your sealed secret's name
+              key: api-token                # must match the key inside that secret
