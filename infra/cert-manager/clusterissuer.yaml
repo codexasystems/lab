@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: codexasystems@gmail.com
+    email: you@example.com
     privateKeySecretRef:
       name: letsencrypt-dns-key   # cert-manager creates/manages this itself, not something you provide
     solvers:
