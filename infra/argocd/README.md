@@ -30,3 +30,7 @@ roles I'm targeting.
 
 ## Status
 Not yet installed — this README documents the plan prior to implementation.
+
+Paused after initial install/testing — ApplicationSet controller was 
+restarting frequently and needed investigation before continuing. Revisiting 
+once other priorities (remaining app READMEs, etc.) are through.
