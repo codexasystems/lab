@@ -231,3 +231,5 @@ spec:
         - name: logs
           emptyDir:
             {}
+
+            #This is a test for argocd sync
