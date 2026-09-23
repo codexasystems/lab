@@ -296,3 +296,4 @@ config:
             icon: homeassistant.png
 
               # this might need the server running in back ground??
+#git ops sync test - 23/09/26
