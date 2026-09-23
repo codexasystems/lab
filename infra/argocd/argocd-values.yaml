@@ -1,0 +1,9 @@
+# infra/argocd/values.yaml
+
+configs:
+  params:
+    server.insecure: true   # TLS terminated at Traefik, matches rest of cluster
+
+server:
+  ingress:
+    enabled: false   # using a separate Traefik IngressRoute (CRD), not the built-in Ingress option — see note below

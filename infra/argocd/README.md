@@ -29,8 +29,14 @@ roles I'm targeting.
 - [ ] Document any sync failures / manual interventions needed
 
 ## Status
-Not yet installed — this README documents the plan prior to implementation.
+Working. Helm install (not raw manifest — see below) resolved the previous 
+applicationset-controller crash-loop with no further diagnosis needed. 
+Ingress via Traefik IngressRoute, same pattern as rest of cluster. First 
+pilot Application (homepage) applied, healthy, synced — manual sync policy 
+(prune/selfHeal off) as planned.
 
-Paused after initial install/testing — ApplicationSet controller was 
-restarting frequently and needed investigation before continuing. Revisiting 
-once other priorities (remaining app READMEs, etc.) are through.
+## Install method
+Switched from raw manifest install.yaml to the official Helm chart 
+(argo/argo-cd), for consistency with the rest of the repo (values.yaml 
+tracked in git, `helm upgrade` for changes rather than re-applying a raw 
+manifest and reconciling by hand).
