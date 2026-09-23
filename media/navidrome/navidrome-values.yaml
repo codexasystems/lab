@@ -8,10 +8,10 @@ persistence:
     enabled: true
     type: nfs
     server: 192.168.1.2
-    path: /volume1/Home Media
+    path: /volume1/Home Media/Music
     globalMounts:
-      - path: /music
-        subPath: music        # adjust to wherever music actually lives under Home Media
+      - path: /Music
+        subPath: Music        # adjust to wherever music actually lives under Home Media
         readOnly: true
 
 env:
