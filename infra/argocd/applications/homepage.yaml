@@ -6,10 +6,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/codexasystems/lab.git
-    targetRevision: main
-    path: homepage
+  sources:
+    - repoURL: https://jameswynn.github.io/helm-charts   # confirm against helm repo list
+      chart: homepage
+      targetRevision: 2.1.0
+      helm:
+        valueFiles:
+          - $values/homepage/homepage-values.yaml
+    - repoURL: https://github.com/codexasystems/lab.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: homepage
