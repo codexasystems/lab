@@ -40,3 +40,19 @@ Switched from raw manifest install.yaml to the official Helm chart
 (argo/argo-cd), for consistency with the rest of the repo (values.yaml 
 tracked in git, `helm upgrade` for changes rather than re-applying a raw 
 manifest and reconciling by hand).
+
+## Incident: stale rendered.yaml caused outage
+Original Application source watched a static `rendered.yaml` snapshot rather 
+than rendering live from `homepage-values.yaml`. A manual fix 
+(HOMEPAGE_ALLOWED_HOSTS) had been applied directly to the cluster but never 
+reflected in the snapshot; the first real ArgoCD sync reverted it, causing 
+an outage. Fixed by converting the Application to a proper multi-source 
+config — chart pulled live from the correct upstream repo 
+(jameswynn/helm-charts, not bjw-s), values read live from 
+`homepage-values.yaml` in this repo. `rendered.yaml` removed entirely.
+
+## Sealed secrets
+Grafana-related SealedSecrets (`grafana-admin-password`, 
+`homepage-grafana-token`) are intentionally excluded from ArgoCD's tracking 
+(argocd.argoproj.io/tracking-id annotation removed) and are managed/applied 
+manually, not via GitOps.

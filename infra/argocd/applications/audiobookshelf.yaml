@@ -1,0 +1,26 @@
+# infra/argocd/applications/audiobookshelf.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: audiobbokshelf
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://geek-cookbook.github.io/charts/
+      chart: audiobookshelf
+      targetRevision: 1.2.2
+      helm:
+        valueFiles:
+          - $values/media/audiobookshelf/audiobookshelf-values.yaml
+    - repoURL: https://github.com/codexasystems/lab.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: audiobookshelf
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+
