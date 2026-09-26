@@ -1,26 +1,28 @@
-# infra/argocd/applications/audiobookshelf.yaml
+# infra/argocd/applications/prometheus.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: audiobookshelf
+  name: prometheus
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://geek-cookbook.github.io/charts/
-      chart: audiobookshelf
-      targetRevision: 1.2.2
+    - repoURL: https://prometheus-community.github.io/helm-charts 
+      chart: kube-prometheus-stack
+      targetRevision: 88.6.3
       helm:
         valueFiles:
-          - $values/media/audiobookshelf/audiobookshelf-values.yaml
+          - $values/monitoring/prometheus/values.yaml
+        releaseName: prometheus-stack
     - repoURL: https://github.com/codexasystems/lab.git
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: audiobookshelf
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: false
       selfHeal: false
-
+    syncOptions:
+      - ServerSideApply=true

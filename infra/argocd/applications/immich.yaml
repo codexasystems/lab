@@ -1,26 +1,25 @@
-# infra/argocd/applications/audiobookshelf.yaml
+# infra/argocd/applications/immich.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: audiobookshelf
+  name: immich
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://geek-cookbook.github.io/charts/
-      chart: audiobookshelf
-      targetRevision: 1.2.2
+    - repoURL: oci://ghcr.io/immich-app/immich-charts/immich
+      chart: immich
+      targetRevision: 0.13.2
       helm:
         valueFiles:
-          - $values/media/audiobookshelf/audiobookshelf-values.yaml
+          - $values/media/immich/immich-values.yaml
     - repoURL: https://github.com/codexasystems/lab.git
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: audiobookshelf
+    namespace: immich
   syncPolicy:
     automated:
       prune: false
       selfHeal: false
-
